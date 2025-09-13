@@ -11,7 +11,16 @@ bot = telebot.TeleBot(BOT_TOKEN)
 # Welcome message handler
 @bot.message_handler(commands=['start', 'hello'])
 def send_welcome(message):
-    bot.reply_to(message, "Howdy, how are you doing?")
+    bot.reply_to(message, "Hello there!, to start using the bot, type /horoscope")
+
+@bot.message_handler(func=lambda msg: True)
+def echo_all(message):
+    if 'hi' in message.text:
+        bot.reply_to(message, "Hello there!, to start using the bot, type /horoscope")
+    elif 'how are you' in message.text:
+        bot.reply_to(message, "I'm just a bot, but thanks for asking!")
+    else:
+        bot.reply_to(message, "I'm not sure how to respond to that.")
 
 # Horoscope API call
 def get_daily_horoscope(sign: str, day: str) -> dict:
