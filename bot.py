@@ -13,15 +13,6 @@ bot = telebot.TeleBot(BOT_TOKEN)
 def send_welcome(message):
     bot.reply_to(message, "Hello there!, to start using the bot, type /horoscope")
 
-@bot.message_handler(func=lambda msg: True)
-def echo_all(message):
-    if 'hi' in message.text:
-        bot.reply_to(message, "Hello there!, to start using the bot, type /horoscope")
-    elif 'how are you' in message.text:
-        bot.reply_to(message, "I'm just a bot, but thanks for asking!")
-    else:
-        bot.reply_to(message, "I'm not sure how to respond to that.")
-
 # Horoscope API call
 def get_daily_horoscope(sign: str, day: str) -> dict:
     url = 'https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily'
